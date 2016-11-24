@@ -159,6 +159,13 @@ static CGFloat const ATLButtonHeight = 28.0f;
 
     frame.size.height = CGRectGetHeight(textViewFrame) + self.verticalMargin * 2;
     frame.origin.y -= frame.size.height - CGRectGetHeight(self.frame);
+  
+  // Adjust yourself for the TabBar
+    CGFloat bottomPadding = self.containerViewController.tabBarController.tabBar.frame.size.height;
+    if (bottomPadding && !self.textInputView.isFirstResponder)
+    {
+      frame.origin.y = -bottomPadding - 1;
+    }
  
     // Only calculate button centerY once to anchor it to bottom of bar.
     if (!self.buttonCenterY) {
